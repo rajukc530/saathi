@@ -9,6 +9,7 @@ import javax.annotation.PreDestroy;
 import org.springframework.stereotype.Component;
 
 import np.com.saathi.parser.HtmlCompanySymbolParser;
+import np.com.saathi.parser.nepalstock.HtmlIDSymbolParser;
 
 
 /**
@@ -23,8 +24,8 @@ public class AppInitializeController {
 	@PostConstruct
 	public void initIt() throws Exception {
 	  System.out.println("Init method after properties are set : ");
-	  HtmlCompanySymbolParser.run();
-	  //HtmlIDSymbolParser.run();
+	  //HtmlCompanySymbolParser.run();
+	  HtmlIDSymbolParser.run();
 	}
 	
 	@PreDestroy

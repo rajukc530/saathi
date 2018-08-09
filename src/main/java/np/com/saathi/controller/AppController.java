@@ -29,7 +29,7 @@ import np.com.saathi.util.NameSymbolMapper;
 @RestController
 public class AppController {
 
-	@RequestMapping(value = "/app/stock", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/app1/stock", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public final ResponseEntity<StockData> getStockData() {
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>Live Stock >>>>>>>>>>>>>>>>>>>>>>>");
@@ -42,7 +42,7 @@ public class AppController {
 
 	}
 
-	@RequestMapping(value = "/app/depth/{symbol}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/app1/depth/{symbol}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public final ResponseEntity<MarketDepth> getDepth(@PathVariable("symbol") String symbol) {
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>Market Depth>>>>>>>>>>>>>>>>>>>>>>>:"+symbol);
@@ -57,7 +57,7 @@ public class AppController {
 
 	}
 
-	@RequestMapping(value = "/app/summary", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/app1/summary", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public final ResponseEntity<StockSummary> getSummary() {
 		HtmlParserSummary.run();
@@ -65,29 +65,29 @@ public class AppController {
 
 	}
 
-	@RequestMapping(value = "/app/live", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/app1/live", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public final ResponseEntity<List<StockLive>> getLive() {
-
+	  callAPI();
 		return new ResponseEntity(HtmlLiveParser.getLives(), HttpStatus.OK);
 
 	}
 
-	@RequestMapping(value = "/app/symbolMapper", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/app1/symbolMapper", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public final ResponseEntity<Hashtable<String, String>> getSymbolMapper() {
 		return new ResponseEntity(NameSymbolMapper.getNameSymbolMapper(), HttpStatus.OK);
 
 	}
 
-	@RequestMapping(value = "/app/depthMapper", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/app1/depthMapper", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public final ResponseEntity<Hashtable<String, String>> getDepthMapper() {
 		return new ResponseEntity(DepthIdSymbolMapper.getDepthIDMapper(), HttpStatus.OK);
 
 	}
 
-	@RequestMapping(value = "/app/symbol", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/app1/symbol", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public final ResponseEntity<Symbols> getSymbol() {
 		return new ResponseEntity(getSymbolData(), HttpStatus.OK);

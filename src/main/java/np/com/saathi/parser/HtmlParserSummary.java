@@ -30,12 +30,13 @@ public class HtmlParserSummary  {
 		Document doc;
 		try {
 			System.out.println("summary running............:"+(new Date()));
-			//File input = new File("E://stock.html");
-			//Document doc = Jsoup.parse(input, "UTF-8", "http://nepalstock.com/stocklive");
-			//doc = Jsoup.connect("http://www.nmbl.com.np/live").userAgent("Mozilla").get();
 			Connection conn = Jsoup.connect("http://www.nmbl.com.np/live");
 	        conn.timeout(300000);
-	        doc = conn.get();
+	        System.out.println("hhaaa");
+	        doc = conn
+	            .userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36")
+	            .get();
+	        System.out.println("hhaaa:"+doc);
 			Elements date_time = doc.select("tbody");
 			for (Element ptext : date_time) {
 				//System.out.println("datetime:"+ptext.text());
@@ -46,6 +47,7 @@ public class HtmlParserSummary  {
 			}
 
 			Elements top_marketinfo = doc.getElementsByClass("top_marketinfo"); 
+			System.out.println(top_marketinfo.toString());
 			for (Element heading2 : top_marketinfo) {
 				Elements p = heading2.select("div");
 				for (Element ptext : p) {
@@ -94,7 +96,7 @@ public class HtmlParserSummary  {
 			}
 			//System.out.println(stockSummary.toString());
 			
-			if(stockSummary.getStatus().equalsIgnoreCase("CLOSED"))
+			if(stockSummary.getStatus() != null && stockSummary.getStatus().equalsIgnoreCase("CLOSED"))
 				stockSummary.setDateTime(stockSummary.getDateTime().substring(0,11)+"15:00:00");
 			
 				System.out.println(stockSummary.toString());

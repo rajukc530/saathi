@@ -12,7 +12,7 @@ import np.com.saathi.parser.HtmlParserSummary;
 @EnableScheduling
 public class SpringConfigSummary {
  
-	@Scheduled(fixedDelay = 2 * 1000)
+	/*@Scheduled(fixedDelay = 2 * 1000)
 	public void scheduleFixedDelayTask() {
 	   // System.out.println(
 	    //  "Summary Fixed delay task start - " + new Date());
@@ -20,6 +20,10 @@ public class SpringConfigSummary {
 	   // System.out.println(
 	  	//      "Summary Fixed delay task end - " + new Date());
 	    
-	}
+	}*/
 	
+  
+  public static void main(String[] args) {
+    HtmlParserSummary.run();
+  }
 }

@@ -58,7 +58,10 @@ public class HtmlMarketDepthParser {
 			 
 			 Connection conn = Jsoup.connect("http://www.nmbl.com.np/live/market-depth-ajax?company_id="+DepthIdSymbolMapper.getId(symbol.toUpperCase()));
 		        conn.timeout(300000);
-		        doc = conn.get();
+		        doc = conn
+	                .userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36")
+	                .get();
+	            
 			 marketDepth.setSymbol(symbol.toUpperCase());
 			/*Element date_time = doc.getElementById("date");
 			if (date_time.text() != null && date_time.text().contains("As of")) {
